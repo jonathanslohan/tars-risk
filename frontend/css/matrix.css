@@ -1,0 +1,217 @@
+/* Estilos específicos para a matriz de riscos */
+
+/* Container da matriz */
+.risk-matrix-container {
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Matriz de riscos */
+.risk-matrix {
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    grid-template-rows: 50px repeat(3, 1fr);
+    gap: 2px;
+    background-color: var(--gray-300);
+}
+
+/* Cabeçalhos da matriz */
+.risk-matrix-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 10px;
+    text-align: center;
+}
+
+/* Cabeçalho vertical */
+.risk-matrix-header.vertical {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    grid-row: span 3;
+}
+
+/* Células da matriz */
+.risk-matrix-cell {
+    min-height: 150px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: white;
+    transition: var(--transition);
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+/* Hover nas células */
+.risk-matrix-cell:hover {
+    box-shadow: inset 0 0 0 2px var(--secondary-color);
+}
+
+/* Células com cores baseadas em impacto e probabilidade */
+.risk-matrix-cell.high-impact.high-probability {
+    background-color: rgba(195, 59, 43, 0.8);
+}
+
+.risk-matrix-cell.high-impact.medium-probability {
+    background-color: rgba(195, 59, 43, 0.6);
+}
+
+.risk-matrix-cell.high-impact.low-probability {
+    background-color: rgba(243, 156, 18, 0.6);
+}
+
+.risk-matrix-cell.medium-impact.high-probability {
+    background-color: rgba(243, 156, 18, 0.8);
+}
+
+.risk-matrix-cell.medium-impact.medium-probability {
+    background-color: rgba(243, 156, 18, 0.6);
+}
+
+.risk-matrix-cell.medium-impact.low-probability {
+    background-color: rgba(21, 115, 71, 0.6);
+}
+
+.risk-matrix-cell.low-impact.high-probability {
+    background-color: rgba(243, 156, 18, 0.6);
+}
+
+.risk-matrix-cell.low-impact.medium-probability {
+    background-color: rgba(21, 115, 71, 0.6);
+}
+
+.risk-matrix-cell.low-impact.low-probability {
+    background-color: rgba(21, 115, 71, 0.8);
+}
+
+/* Itens de risco dentro da matriz */
+.risk-item {
+    background-color: white;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+    transition: var(--transition);
+    border-left: 4px solid var(--primary-color);
+    position: relative;
+}
+
+.risk-item:last-child {
+    margin-bottom: 0;
+}
+
+.risk-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.risk-item.dragging {
+    opacity: 0.7;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.risk-item-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.risk-item-description {
+    font-size: 0.875rem;
+    color: var(--gray-700);
+    margin-bottom: 8px;
+}
+
+.risk-item-date {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    text-align: right;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.risk-item-status {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.risk-item-status.identified {
+    background-color: var(--gray-200);
+    color: var(--gray-700);
+}
+
+.risk-item-status.analyzing {
+    background-color: var(--info-color);
+    color: white;
+}
+
+.risk-item-status.mitigated {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.risk-item-status.accepted {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.risk-item-status.transferred {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Animações para drag and drop */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 178, 217, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 178, 217, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 178, 217, 0);
+    }
+}
+
+.risk-matrix-cell.dragover {
+    animation: pulse 1.5s infinite;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .risk-matrix {
+        grid-template-columns: 60px repeat(3, 1fr);
+    }
+    
+    .risk-matrix-cell {
+        min-height: 100px;
+        padding: 8px;
+    }
+    
+    .risk-item {
+        padding: 8px;
+    }
+    
+    .risk-item-title {
+        font-size: 0.9rem;
+    }
+    
+    .risk-item-description {
+        font-size: 0.8rem;
+    }
+}
+

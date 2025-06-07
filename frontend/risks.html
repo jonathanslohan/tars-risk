@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Riscos - TARS-RISK</title>
+    <link rel="icon" href="images/Slohanicon-03.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/slohanparafundoescuro-01.png" alt="TARS-RISK Logo">
+                <h1>TARS-RISK</h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link active">Riscos</a>
+                <a href="#" class="nav-link">Relatórios</a>
+                <div class="user-menu nav-link">
+                    <i class="fas fa-user"></i> <span id="username-display">Usuário</span>
+                    <div class="user-menu-dropdown">
+                        <a href="#" class="user-menu-item">Perfil</a>
+                        <a href="#" class="user-menu-item">Configurações</a>
+                        <a href="#" class="user-menu-item" id="logout-btn">Sair</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Gerenciamento de Riscos</h2>
+                            <button class="btn btn-primary btn-sm" id="add-risk-btn">
+                                <i class="fas fa-plus"></i> Novo Risco
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <label for="risk-filter" class="form-label mr-2">Filtrar por:</label>
+                                            <select id="risk-filter" class="form-select" style="width: auto; display: inline-block;">
+                                                <option value="all">Todos</option>
+                                                <option value="high">Alto Impacto</option>
+                                                <option value="medium">Médio Impacto</option>
+                                                <option value="low">Baixo Impacto</option>
+                                                <option value="identified">Identificados</option>
+                                                <option value="mitigated">Mitigados</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <input type="text" id="risk-search" class="form-control" placeholder="Buscar riscos...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Título</th>
+                                            <th>Descrição</th>
+                                            <th>Impacto</th>
+                                            <th>Probabilidade</th>
+                                            <th>Status</th>
+                                            <th>Responsável</th>
+                                            <th>Data Limite</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="risks-table-body">
+                                        <!-- Riscos serão adicionados dinamicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div id="pagination" class="d-flex justify-content-center mt-4">
+                                <!-- Paginação será adicionada dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Estatísticas de Riscos</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3>Riscos por Impacto</h3>
+                                            <div id="impact-chart" style="height: 200px;">
+                                                <!-- Gráfico será adicionado dinamicamente -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h3>Riscos por Status</h3>
+                                            <div id="status-chart" style="height: 200px;">
+                                                <!-- Gráfico será adicionado dinamicamente -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <img src="images/slohanparafundoescuro-01.png" alt="TARS-RISK Logo">
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Sobre</a>
+                    <a href="#" class="footer-link">Termos</a>
+                    <a href="#" class="footer-link">Privacidade</a>
+                    <a href="#" class="footer-link">Contato</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 TARS-RISK - Threat Assessment & Reconnaissance System. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Adicionar/Editar Risco -->
+    <div id="risk-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="risk-modal-title">Adicionar Novo Risco</h2>
+            
+            <div id="risk-alert" class="alert alert-danger" style="display: none;"></div>
+            
+            <form id="risk-form">
+                <input type="hidden" id="risk-id">
+                
+                <div class="form-group">
+                    <label for="risk-title" class="form-label">Título</label>
+                    <input type="text" id="risk-title" name="title" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="risk-description" class="form-label">Descrição</label>
+                    <textarea id="risk-description" name="description" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="risk-impact" class="form-label">Impacto</label>
+                            <select id="risk-impact" name="impact" class="form-select" required>
+                                <option value="1">Baixo</option>
+                                <option value="2">Médio</option>
+                                <option value="3">Alto</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="risk-probability" class="form-label">Probabilidade</label>
+                            <select id="risk-probability" name="probability" class="form-select" required>
+                                <option value="1">Baixa</option>
+                                <option value="2">Média</option>
+                                <option value="3">Alta</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="risk-status" class="form-label">Status</label>
+                            <select id="risk-status" name="status" class="form-select" required>
+                                <option value="Identificado">Identificado</option>
+                                <option value="Em análise">Em análise</option>
+                                <option value="Mitigado">Mitigado</option>
+                                <option value="Aceito">Aceito</option>
+                                <option value="Transferido">Transferido</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="risk-owner" class="form-label">Responsável</label>
+                            <input type="text" id="risk-owner" name="owner" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="risk-due-date" class="form-label">Data Limite</label>
+                    <input type="date" id="risk-due-date" name="due_date" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="risk-mitigation" class="form-label">Plano de Mitigação</label>
+                    <textarea id="risk-mitigation" name="mitigation_plan" class="form-control" rows="3"></textarea>
+                </div>
+                
+                <div class="text-right mt-4">
+                    <button type="button" class="btn btn-secondary mr-2" id="cancel-risk-btn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Visualização de Risco -->
+    <div id="view-risk-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="view-risk-title">Detalhes do Risco</h2>
+            
+            <div class="risk-details">
+                <div class="row mb-3">
+                    <div class="col">
+                        <h3 id="view-risk-name"></h3>
+                        <p id="view-risk-description"></p>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <strong>Impacto:</strong> <span id="view-risk-impact"></span>
+                    </div>
+                    <div class="col">
+                        <strong>Probabilidade:</strong> <span id="view-risk-probability"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <strong>Status:</strong> <span id="view-risk-status"></span>
+                    </div>
+                    <div class="col">
+                        <strong>Responsável:</strong> <span id="view-risk-owner"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <strong>Data Limite:</strong> <span id="view-risk-due-date"></span>
+                    </div>
+                    <div class="col">
+                        <strong>Data de Criação:</strong> <span id="view-risk-created"></span>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col">
+                        <strong>Plano de Mitigação:</strong>
+                        <p id="view-risk-mitigation"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-right mt-4">
+                <button type="button" class="btn btn-secondary" id="close-view-btn">Fechar</button>
+                <button type="button" class="btn btn-primary" id="edit-from-view-btn">Editar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/risks.js"></script>
+</body>
+</html>
+

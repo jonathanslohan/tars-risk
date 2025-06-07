@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TARS-RISK API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #1F3B4D;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .endpoint {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-left: 4px solid #1F3B4D;
+            background-color: #f9f9f9;
+        }
+        .method {
+            font-weight: bold;
+            color: #1F3B4D;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/static/images/slohanparafundoescuro-01.png" alt="TARS-RISK Logo" class="logo">
+        <h1>TARS-RISK API</h1>
+        <p>Threat Assessment & Reconnaissance System</p>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <h2>Bem-vindo à API do TARS-RISK</h2>
+            <p>Esta é a API de backend para o sistema TARS-RISK, uma ferramenta para gerenciamento de riscos.</p>
+            
+            <h3>Endpoints Disponíveis:</h3>
+            
+            <div class="endpoint">
+                <p><span class="method">GET</span> /api/status</p>
+                <p>Verifica o status da API.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">POST</span> /api/auth/register</p>
+                <p>Registra um novo usuário.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">POST</span> /api/auth/login</p>
+                <p>Autentica um usuário.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">POST</span> /api/auth/logout</p>
+                <p>Encerra a sessão do usuário.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">GET</span> /api/risks/</p>
+                <p>Obtém todos os riscos do usuário atual.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">POST</span> /api/risks/</p>
+                <p>Cria um novo risco.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">GET</span> /api/risks/{id}</p>
+                <p>Obtém um risco específico.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">PUT</span> /api/risks/{id}</p>
+                <p>Atualiza um risco existente.</p>
+            </div>
+            
+            <div class="endpoint">
+                <p><span class="method">DELETE</span> /api/risks/{id}</p>
+                <p>Exclui um risco.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 TARS-RISK - Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
+
